@@ -10,7 +10,7 @@ class Solution(nn.Module):
         self.first_linear = nn.Linear(784,512)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(0.2)
-        self.projection = nn.Linear(512,10)
+        self.sec_linear = nn.Linear(512,10)
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, images: TensorType[float]) -> TensorType[float]:
@@ -20,7 +20,6 @@ class Solution(nn.Module):
         x = self.first_linear(images)
         x = self.relu(x)
         x = self.dropout(x)
-        x = self.projection(x)
+        x = self.sec_linear(x)
         x = self.sigmoid(x)
-        return torch.round(x,decimals = 4)
-
+        return torch.round(x,decimals=4)
