@@ -18,6 +18,6 @@ class Solution(nn.Module):
         # Return a B, 1 tensor and round to 4 decimal places
         embddings = self.embd_layer(x)
         avg = torch.mean(embddings,dim=1)
-        projected = self.linear_layer(avg)
-        final = self.output_layer(projected)
-        return torch.round(final,decimals = 4)
+        logits = self.linear_layer(avg)
+        prob = self.output_layer(logits)
+        return torch.round(prob,decimals = 4)
